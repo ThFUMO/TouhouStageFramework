@@ -11,62 +11,62 @@ namespace TouhouStageFramework
         /// <summary>
         /// The current normalized position of the player.
         /// </summary>
-        public Vector2 PlayerPosition { get; }
+        public Vector2 PlayerPosition { get; set; }
 
         /// <summary>
         /// All <see cref="Enemy"/> currently on the screen.
         /// </summary>
-        public IList<Enemy> Enemies { get; }
+        public IList<Enemy> Enemies { get; set; }
         
         /// <summary>
         /// Current life count.
         /// </summary>
-        public int LifeCount { get; }
+        public int LifeCount { get; set; }
 
         /// <summary>
         /// Current life piece count.
         /// </summary>
-        public int LifePieceCount { get; }
+        public int LifePieceCount { get; set; }
 
         /// <summary>
         /// Current spellcard count.
         /// </summary>
-        public int SpellcardCount { get; }
+        public int SpellcardCount { get; set; }
 
         /// <summary>
         /// Current spellcard piece count.
         /// </summary>
-        public int SpellcardPieceCount { get; }
+        public int SpellcardPieceCount { get; set; }
 
         /// <summary>
         /// Current score.
         /// </summary>
-        public int Score { get; }
+        public int Score { get; set; }
 
         /// <summary>
         /// Current high score.
         /// </summary>
-        public int HighScore { get; }
+        public int HighScore { get; set; }
 
         /// <summary>
         /// Current power value.
         /// </summary>
-        public int Power { get; }
+        public int Power { get; set; }
 
         /// <summary>
         /// Current max value of point items.
         /// </summary>
-        public int MaxPointValue { get; }
+        public int MaxPointValue { get; set; }
 
         /// <summary>
         /// Current graze count.
         /// </summary>
-        public int GrazeCount { get; }
+        public int GrazeCount { get; set; }
 
         /// <summary>
         /// Is game paused?
         /// </summary>
-        public bool IsPaused { get; }
+        public bool IsPaused { get; set; }
 
         /// <summary>
         /// Default constructor.
