@@ -41,7 +41,7 @@ namespace TouhouStageFramework
         /// </summary>
         /// <param name="batch">The <see cref="EnemyBatch"/> to target.</param>
         /// <param name="state">The <see cref="EnemyState"/> used as the condition.</param>
-        /// <param name="triggerType"><inheritdoc cref="Trigger.TriggerType" path="/summary"/></param>
+        /// <param name="triggerType">The <see cref="TriggerType"/> to use.</param>
         public EnemyBatchTrigger(EnemyBatch batch, EnemyState state, TriggerType triggerType)
         {
             TargetBatch = batch;
@@ -50,7 +50,7 @@ namespace TouhouStageFramework
         }
 
         /// <summary>
-        /// Fires <see cref="Triggered"/> if both of the <see cref="TargetState"/> and <see cref="TriggerType"/> conditions are met.
+        /// Checks if <see cref="Triggered"/> needs to be fired.
         /// </summary>
         /// <param name="gameInfo"><inheritdoc path="/param[@name='gameInfo']"/></param>
         public override void Update(GameInfo gameInfo)

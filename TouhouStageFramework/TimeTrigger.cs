@@ -29,7 +29,7 @@ namespace TouhouStageFramework
         /// Initializes a new instance of <see cref="TimeTrigger"/> that triggers after <paramref name="triggerTime"/> seconds after a stage has started.
         /// </summary>
         /// <param name="triggerTime">The time in seconds since the start of a stage it takes to trigger this <see cref="Trigger"/>.</param>
-        /// <param name="triggerType"><inheritdoc cref="Trigger.TriggerType" path="/summary"/></param>
+        /// <param name="triggerType">The <see cref="TouhouStageFramework.TriggerType"/> to use.</param>
         public TimeTrigger(double triggerTime, TriggerType triggerType)
         {
             TriggerTime = triggerTime;
@@ -46,7 +46,7 @@ namespace TouhouStageFramework
         }
 
         /// <summary>
-        /// Updates <see cref="ElapsedTime"/> and fires <see cref="Triggered"/> if <see cref="TriggerTime"/> seconds have elapsed.
+        /// Updates <see cref="ElapsedTime"/> and checks if <see cref="Triggered"/> needs to be fired.
         /// </summary>
         /// <param name="gameInfo"><inheritdoc path="/param[@name='gameInfo']"/></param>
         public override void Update(GameInfo gameInfo)
