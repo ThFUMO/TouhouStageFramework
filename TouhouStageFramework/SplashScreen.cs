@@ -6,8 +6,8 @@ namespace TouhouStageFramework
     public class SplashScreen
     {
         /// <summary>
-        /// The path to the webm video that is shown as the splash screen.
+        /// The path to the video that is shown as the splash screen.
         /// </summary>
-        public string WebmPath { get; set; }
+        public string VideoPath { get; set; }
     }
 }
