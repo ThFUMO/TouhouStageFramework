@@ -15,15 +15,52 @@ namespace TouhouStageFramework
         /// <inheritdoc cref="TouhouStageFramework.TriggerType"/>
         public abstract TriggerType TriggerType { get; set; }
 
+        private bool hasTriggered = false;
+
+        private bool lastTriggered = false;
+
         /// <summary>
-        /// The update method of this <see cref="Trigger"/>. This is typically called by the backend every frame. It is used to update the state of this <see cref="Trigger"/>.
+        /// The update method of this <see cref="Trigger"/>. This is typically called by the backend every frame. It is used to update the state of this <see cref="Trigger"/> and fire <see cref="Triggered"/> if necessary.
         /// </summary>
-        /// <param name="gameInfo"></param>
+        /// <param name="gameInfo">The current <see cref="GameInfo"/>.</param>
         public abstract void Update(GameInfo gameInfo);
 
         /// <summary>
-        /// An event that fires when <see cref="IsTriggered"/> is <see langword="true"/>. The backend typically need to subscribe to this event.
+        /// An event that fires when <see cref="IsTriggered"/> is <see langword="true"/> and the current condition satisfies <see cref="TriggerType"/>. The backend typically need to subscribe to this event.
         /// </summary>
         public abstract event EventHandler<TriggeredEventArgs> Triggered;
+
+        /// <summary>
+        /// A simple helper that helps determine if <see cref="Triggered"/> should be fired by checking <see cref="IsTriggered"/> and <see cref="TriggerType"/>.
+        /// </summary>
+        protected bool ShouldFireTriggered
+        {
+            get
+            {
+                if (IsTriggered)
+                {
+                    switch (TriggerType)
+                    {
+                        case TriggerType.Once:
+                            if (!hasTriggered)
+                            {
+                                hasTriggered = true;
+                                return true;
+                            }
+                            break;
+                        case TriggerType.Impulse:
+                            if (!lastTriggered)
+                            {
+                                return true;
+                            }
+                            break;
+                        case TriggerType.Repeat:
+                            return true;
+                    }
+                }
+                lastTriggered = IsTriggered;
+                return false;
+            }
+        }
     }
 }

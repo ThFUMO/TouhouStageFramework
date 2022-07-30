@@ -3,7 +3,7 @@ using System;
 namespace TouhouStageFramework
 {
     /// <summary>
-    /// A trigger based on the time elapsed since the start of a stage.
+    /// A <see cref="Trigger"/> based on the time elapsed since the start of a stage.
     /// </summary>
     public class TimeTrigger : Trigger
     {
@@ -25,12 +25,6 @@ namespace TouhouStageFramework
         /// <inheritdoc cref="Trigger.TriggerType"/>
         public override TriggerType TriggerType { get; set; }
 
-        private bool hasTriggered = false;
-
-        private bool lastTriggered = false;
-
-        private GameInfo gameInfo;
-
         /// <summary>
         /// Initializes a new instance of <see cref="TimeTrigger"/> that triggers after <paramref name="triggerTime"/> seconds after a stage has started.
         /// </summary>
@@ -42,7 +36,7 @@ namespace TouhouStageFramework
             TriggerType = triggerType;
         }
         
-        /// <inheritdoc cref="Trigger.IsTriggered"/>
+        /// <inheritdoc/>
         public override bool IsTriggered
         {
             get
@@ -52,45 +46,25 @@ namespace TouhouStageFramework
         }
 
         /// <summary>
-        /// Updates <see cref="StartTime"/> and <see cref="ElapsedTime"/> and invokes <see cref="Triggered"/> if <see cref="TriggerTime"/> seconds have elapsed.
+        /// Updates <see cref="ElapsedTime"/> and fires <see cref="Triggered"/> if <see cref="TriggerTime"/> seconds have elapsed.
         /// </summary>
-        /// <param name="gameInfo"></param>
+        /// <param name="gameInfo"><inheritdoc path="/param[@name='gameInfo']"/></param>
         public override void Update(GameInfo gameInfo)
         {
-            this.gameInfo = gameInfo;
             if (!gameInfo.IsPaused)
             {
                 ElapsedTime += gameInfo.DeltaTime;
             }
-            if (IsTriggered)
+            if (ShouldFireTriggered)
             {
-                switch (TriggerType)
-                {
-                    case TriggerType.Once:
-                        if (!hasTriggered)
-                        {
-                            OnTriggered();
-                            hasTriggered = true;
-                        }
-                        break;
-                    case TriggerType.Impulse:
-                        if (!lastTriggered)
-                        {
-                            OnTriggered();
-                        }
-                        break;
-                    case TriggerType.Repeat:
-                        OnTriggered();
-                        break;
-                }
+                OnTriggered(gameInfo);
             }
-            lastTriggered = IsTriggered;
         }
 
-        /// <inheritdoc cref="Trigger.Triggered"/>
+        /// <inheritdoc/>
         public override event EventHandler<TriggeredEventArgs> Triggered;
 
-        private void OnTriggered()
+        private void OnTriggered(GameInfo gameInfo)
         {
             Triggered?.Invoke(this, new TriggeredEventArgs(gameInfo));
         }

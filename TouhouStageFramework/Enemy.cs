@@ -6,9 +6,14 @@
     public abstract class Enemy
     {
         /// <summary>
-        /// The name of this enemy.
+        /// The name of this <see cref="Enemy"/>.
         /// </summary>
-        public abstract string Name { get; }
+        public abstract string Name { get; set; }
+
+        /// <summary>
+        /// The <see cref="EnemyState"/> of this <see cref="Enemy"/>.
+        /// </summary>
+        public abstract EnemyState State { get; set; }
 
         /// <summary>
         /// Implicitly converts a single <see cref="Enemy"/> to an <see cref="EnemyBatch"/> that contains only this <see cref="Enemy"/>.
