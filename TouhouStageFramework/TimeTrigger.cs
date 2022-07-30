@@ -1,5 +1,3 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
 
 namespace TouhouStageFramework
@@ -12,17 +10,17 @@ namespace TouhouStageFramework
         /// <summary>
         /// The time in seconds since the start of a stage it takes to trigger this <see cref="Trigger"/>.
         /// </summary>
-        public float TriggerTime { get; set; }
+        public double TriggerTime { get; set; }
 
         /// <summary>
         /// The time when a stage has started for this <see cref="Trigger"/>. This is typically set by the backend.
         /// </summary>
-        public float StartTime { get; set; }
+        public double StartTime { get; set; }
 
         /// <summary>
         /// The time elapsed since the start of a stage for this <see cref="Trigger"/>. This is typically set by the backend.
         /// </summary>
-        public float ElapsedTime { get; set; }
+        public double ElapsedTime { get; set; }
 
         /// <inheritdoc cref="Trigger.TriggerType"/>
         public override TriggerType TriggerType { get; set; }
@@ -38,7 +36,7 @@ namespace TouhouStageFramework
         /// </summary>
         /// <param name="triggerTime">The time in seconds since the start of a stage it takes to trigger this <see cref="Trigger"/>.</param>
         /// <param name="triggerType"><inheritdoc cref="Trigger.TriggerType" path="/summary"/></param>
-        public TimeTrigger(float triggerTime, TriggerType triggerType)
+        public TimeTrigger(double triggerTime, TriggerType triggerType)
         {
             TriggerTime = triggerTime;
             TriggerType = triggerType;
@@ -62,7 +60,7 @@ namespace TouhouStageFramework
             this.gameInfo = gameInfo;
             if (!gameInfo.IsPaused)
             {
-                ElapsedTime += Time.deltaTime;
+                ElapsedTime += gameInfo.DeltaTime;
             }
             if (IsTriggered)
             {

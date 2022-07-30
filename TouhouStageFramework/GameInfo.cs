@@ -1,10 +1,10 @@
-using UnityEngine;
+using System.Numerics;
 using System.Collections.Generic;
 
 namespace TouhouStageFramework
 {
     /// <summary>
-    /// Represents the state of the game at an instant.
+    /// Represents the state of the game at an instant. Instances of this class is usually provided by the backend.
     /// </summary>
     public class GameInfo
     {
@@ -69,6 +69,16 @@ namespace TouhouStageFramework
         public bool IsPaused { get; set; }
 
         /// <summary>
+        /// The time in seconds since the start of a stage.
+        /// </summary>
+        public double Time { get; set; }
+
+        /// <summary>
+        /// The time difference between this frame and the last in seconds.
+        /// </summary>
+        public double DeltaTime { get; set; }
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         public GameInfo()
@@ -94,6 +104,8 @@ namespace TouhouStageFramework
             MaxPointValue = other.MaxPointValue;
             GrazeCount = other.GrazeCount;
             IsPaused = other.IsPaused;
+            Time = other.Time;
+            DeltaTime = other.DeltaTime;
         }
     }
 }

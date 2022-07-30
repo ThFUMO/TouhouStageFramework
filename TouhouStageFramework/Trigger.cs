@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace TouhouStageFramework
 {
@@ -17,7 +16,7 @@ namespace TouhouStageFramework
         public abstract TriggerType TriggerType { get; set; }
 
         /// <summary>
-        /// The update method of this <see cref="Trigger"/>. This is typically called by the backend in the Update method in <see cref="MonoBehaviour"/>.
+        /// The update method of this <see cref="Trigger"/>. This is typically called by the backend every frame. It is used to update the state of this <see cref="Trigger"/>.
         /// </summary>
         /// <param name="gameInfo"></param>
         public abstract void Update(GameInfo gameInfo);
