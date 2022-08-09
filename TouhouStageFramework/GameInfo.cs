@@ -9,7 +9,7 @@ namespace TouhouStageFramework
     public class GameInfo
     {
         /// <summary>
-        /// The current normalized position of the player.
+        /// The current position of the player.
         /// </summary>
         public Vector2 PlayerPosition { get; set; }
 
